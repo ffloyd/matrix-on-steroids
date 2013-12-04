@@ -2,25 +2,24 @@
 #define MF_MATRIX
 #include <vector>
 
-template<class number>
+template<class number, int N, int M>
 class Matrix {
 	
 	std::vector< std::vector<number> > data;
-	int n;
 
 public:
+	Matrix();
 
-	Matrix(const int n);
+	const number& get(const int i, const int j) const;
+	void set(const int i, const int j, const number value);
 
-	void set(const int i, const int j, number value);
+	void print() const;
 
-	const number& get(const int i, const int j);
+	void fill_with(const number value);
 
-	void fill_with(number value);
-
-	void print();
-
-	Matrix<number> operator+ (const Matrix<number> second);
+	Matrix<number, N, M> operator+(const Matrix<number, N, M>& second) const;
 };
+
+#include "matrix.tlt"
 
 #endif

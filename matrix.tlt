@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+
+template<class number, int N, int M>
+Matrix<number, N, M>::Matrix()
+{
+	data.resize( N, std::vector<number>(M, 0) );
+}
+
+
+template<class number, int N, int M>
+const number&
+Matrix<number, N, M>::get(const int i, const int j) const
+{
+	return data[i][j];
+}
+
+
+template<class number, int N, int M>
+void
+Matrix<number, N, M>::set(const int i, const int j, const number value)
+{
+	data[i][j] = value;
+}
+
+
+template<class number, int N, int M>
+void
+Matrix<number, N, M>::print() const
+{
+	for(int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			std::cout << get(i, j) << " ";
+		}
+		std::cout << std::endl;
+	}
+}
+
+
+template<class number, int N, int M>
+void
+Matrix<number, N, M>::fill_with(const number value)
+{
+	for(int i = 0; i < N; i++)
+	{
+		for(int j = 0; j < M; j++)
+		{
+			set(i, j, value);
+		}
+	}
+}
+
+
+template<class number, int N, int M>
+Matrix<number, N, M>
+Matrix<number, N, M>::operator+(const Matrix<number, N, M>& second) const
+{
+	Matrix<number, N, M> result;
+
+	for(int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			result.set(i, j, get(i, j) + second.get(i, j));
+		}
+	}
+
+	return result;
+}

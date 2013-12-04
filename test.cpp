@@ -1,13 +1,13 @@
 #include "matrix.hpp"
 
 int main() {
-	Matrix<int> a(5);
-	Matrix<int> b(5);
+	Matrix<int, 5, 5> a;
+	Matrix<int, 5, 5> b;
 
 	a.fill_with(1);
 	b.fill_with(2);
 
-	Matrix<int> c = a + b;
+	Matrix<int, 5, 5> c = a + b;
 
 	c.print();
 
