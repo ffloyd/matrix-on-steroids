@@ -9,7 +9,7 @@ Matrix<number, N, M>::Matrix()
 
 
 template<class number, int N, int M>
-const number&
+const number
 Matrix<number, N, M>::get(const int i, const int j) const
 {
 	return data[i][j];
@@ -55,7 +55,7 @@ Matrix<number, N, M>::fill_with(const number value)
 
 template<class number, int N, int M>
 Matrix<number, N, M>
-Matrix<number, N, M>::operator+(const Matrix<number, N, M>& second) const
+Matrix<number, N, M>::operator+(const MatrixObject<number, N, M>& second) const
 {
 	Matrix<number, N, M> result;
 
