@@ -1,36 +1,38 @@
 #include <iostream>
 #include <vector>
 
-template<class number, int N, int M>
-Matrix<number, N, M>::Matrix()
+template<class number>
+Matrix<number>::Matrix(const int N, const int M)
 {
+	this->N = N;
+	this->M = M;
 	data.resize( N, std::vector<number>(M, 0) );
 }
 
 
-template<class number, int N, int M>
+template<class number>
 const number
-Matrix<number, N, M>::get(const int i, const int j) const
+Matrix<number>::get(const int i, const int j) const
 {
 	return data[i][j];
 }
 
 
-template<class number, int N, int M>
+template<class number>
 void
-Matrix<number, N, M>::set(const int i, const int j, const number value)
+Matrix<number>::set(const int i, const int j, const number value)
 {
 	data[i][j] = value;
 }
 
 
-template<class number, int N, int M>
+template<class number>
 void
-Matrix<number, N, M>::print() const
+Matrix<number>::print() const
 {
-	for(int i = 0; i < N; i++)
+	for(int i = 0; i < this->N; i++)
 	{
-		for (int j = 0; j < M; j++)
+		for (int j = 0; j < this->M; j++)
 		{
 			std::cout << get(i, j) << " ";
 		}
@@ -39,13 +41,13 @@ Matrix<number, N, M>::print() const
 }
 
 
-template<class number, int N, int M>
+template<class number>
 void
-Matrix<number, N, M>::fill_with(const number value)
+Matrix<number>::fill_with(const number value)
 {
-	for(int i = 0; i < N; i++)
+	for(int i = 0; i < this->N; i++)
 	{
-		for(int j = 0; j < M; j++)
+		for(int j = 0; j < this->M; j++)
 		{
 			set(i, j, value);
 		}
@@ -53,15 +55,15 @@ Matrix<number, N, M>::fill_with(const number value)
 }
 
 
-template<class number, int N, int M>
-Matrix<number, N, M>
-Matrix<number, N, M>::operator+(const MatrixObject<number, N, M>& second) const
+template<class number>
+Matrix<number>
+Matrix<number>::operator+(const MatrixObject<number>& second) const
 {
-	Matrix<number, N, M> result;
+	Matrix<number> result(this->N, this->M);
 
-	for(int i = 0; i < N; i++)
+	for(int i = 0; i < this->N; i++)
 	{
-		for (int j = 0; j < M; j++)
+		for (int j = 0; j < this->M; j++)
 		{
 			result.set(i, j, get(i, j) + second.get(i, j));
 		}

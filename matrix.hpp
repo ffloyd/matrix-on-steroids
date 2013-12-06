@@ -3,14 +3,14 @@
 #include <vector>
 #include "matrix_object.hpp"
 
-template<class number, int N, int M>
-class Matrix : public MatrixObject<number, N, M>
+template<class number>
+class Matrix : public MatrixObject<number>
 {
 	
 	std::vector< std::vector<number> > data;
 
 public:
-	Matrix();
+	Matrix(const int N, const int M);
 
 	const number get(const int i, const int j) const;
 	void set(const int i, const int j, const number value);
@@ -19,7 +19,7 @@ public:
 
 	void fill_with(const number value);
 
-	Matrix<number, N, M> operator+(const MatrixObject<number, N, M>& second) const;
+	Matrix<number> operator+(const MatrixObject<number>& second) const;
 };
 
 #include "matrix.tlt"
