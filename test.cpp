@@ -7,7 +7,7 @@ int main() {
 	a.fill_with(1);
 	b.fill_with(2);
 
-	Matrix<int> c = a + b;
+	Matrix<int> c = (a + b) + (b + a);
 
 	c.print();
 

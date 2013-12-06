@@ -8,6 +8,24 @@ Matrix<number>::Matrix(const int N, const int M) :
 
 
 template<class number>
+template<class T>
+Matrix<number>::Matrix(const T& source)
+{
+	N = source.N;
+	M = source.M;
+
+	data.resize( N, std::vector<number>(M, 0) );
+
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < M; j++)
+		{
+			data[i][j] = source.get(i, j);
+		}
+	}
+}
+
+template<class number>
 const number
 Matrix<number>::get(const int i, const int j) const
 {
@@ -54,18 +72,8 @@ Matrix<number>::fill_with(const number value)
 
 template<class number>
 template<class RightOp>
-Matrix<number>
+matrix_operation::plus<number, Matrix<number>, RightOp>
 Matrix<number>::operator+(const RightOp& right) const
 {
-	Matrix<number> result(N, M);
-
-	for(int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < M; j++)
-		{
-			result.set(i, j, get(i, j) + right.get(i, j));
-		}
-	}
-
-	return result;
+	return matrix_operation::plus<number, Matrix<number>, RightOp>(*this, right, N, M);
 }
