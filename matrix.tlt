@@ -1,11 +1,8 @@
-#include <iostream>
-#include <vector>
-
 template<class number>
-Matrix<number>::Matrix(const int N, const int M)
+Matrix<number>::Matrix(const int N, const int M) :
+	N(N),
+	M(M)
 {
-	this->N = N;
-	this->M = M;
 	data.resize( N, std::vector<number>(M, 0) );
 }
 
@@ -30,9 +27,9 @@ template<class number>
 void
 Matrix<number>::print() const
 {
-	for(int i = 0; i < this->N; i++)
+	for(int i = 0; i < N; i++)
 	{
-		for (int j = 0; j < this->M; j++)
+		for (int j = 0; j < M; j++)
 		{
 			std::cout << get(i, j) << " ";
 		}
@@ -45,9 +42,9 @@ template<class number>
 void
 Matrix<number>::fill_with(const number value)
 {
-	for(int i = 0; i < this->N; i++)
+	for(int i = 0; i < N; i++)
 	{
-		for(int j = 0; j < this->M; j++)
+		for(int j = 0; j < M; j++)
 		{
 			set(i, j, value);
 		}
@@ -57,13 +54,13 @@ Matrix<number>::fill_with(const number value)
 
 template<class number>
 Matrix<number>
-Matrix<number>::operator+(const MatrixObject<number>& second) const
+Matrix<number>::operator+(const Matrix<number>& second) const
 {
-	Matrix<number> result(this->N, this->M);
+	Matrix<number> result(N, M);
 
-	for(int i = 0; i < this->N; i++)
+	for(int i = 0; i < N; i++)
 	{
-		for (int j = 0; j < this->M; j++)
+		for (int j = 0; j < M; j++)
 		{
 			result.set(i, j, get(i, j) + second.get(i, j));
 		}

@@ -1,12 +1,12 @@
 #ifndef MF_MATRIX
 #define MF_MATRIX
 #include <vector>
-#include "matrix_object.hpp"
+#include <iostream>
 
 template<class number>
-class Matrix : public MatrixObject<number>
+class Matrix
 {
-	
+	int N, M;
 	std::vector< std::vector<number> > data;
 
 public:
@@ -19,7 +19,7 @@ public:
 
 	void fill_with(const number value);
 
-	Matrix<number> operator+(const MatrixObject<number>& second) const;
+	Matrix<number> operator+(const Matrix<number>& second) const;
 };
 
 #include "matrix.tlt"

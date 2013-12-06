@@ -1,2 +1,2 @@
-test: test.cpp matrix.hpp matrix.tlt matrix_object.hpp
+test: test.cpp matrix.hpp matrix.tlt 
 	g++ $(CFLAGS) -o test test.cpp
