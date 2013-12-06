@@ -53,8 +53,9 @@ Matrix<number>::fill_with(const number value)
 
 
 template<class number>
+template<class RightOp>
 Matrix<number>
-Matrix<number>::operator+(const Matrix<number>& second) const
+Matrix<number>::operator+(const RightOp& right) const
 {
 	Matrix<number> result(N, M);
 
@@ -62,7 +63,7 @@ Matrix<number>::operator+(const Matrix<number>& second) const
 	{
 		for (int j = 0; j < M; j++)
 		{
-			result.set(i, j, get(i, j) + second.get(i, j));
+			result.set(i, j, get(i, j) + right.get(i, j));
 		}
 	}
 

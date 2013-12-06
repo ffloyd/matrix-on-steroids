@@ -19,7 +19,8 @@ public:
 
 	void fill_with(const number value);
 
-	Matrix<number> operator+(const Matrix<number>& second) const;
+	template<class RightOp>
+	Matrix<number> operator+(const RightOp& right) const;
 };
 
 #include "matrix.tlt"
