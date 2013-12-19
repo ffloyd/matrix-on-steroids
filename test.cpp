@@ -2,11 +2,12 @@
 
 #include "dense_matrix.hpp"
 #include "crtp/matrix_base.hpp"
+//#include "crtp/matrix_operation.hpp"
 
-template<class T>
-void test_matrix_base_crtp(const MatrixBase<T>& matrix)
+template<class T, class E>
+void test_matrix_base_crtp(const MatrixBase<T, E>& matrix)
 {
-	std::cout << matrix.self()(0, 0) << std::endl;
+	std::cout << matrix(0, 0) << std::endl;
 }
 
 template<class T>

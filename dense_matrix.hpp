@@ -6,7 +6,7 @@
 #include "crtp/matrix_base.hpp"
 
 template<class element>
-class DenseMatrix : public MatrixBase< DenseMatrix<element> >
+class DenseMatrix : public MatrixBase< DenseMatrix<element>, element >
 {
 	element *data;
 	int N, M;
