@@ -31,7 +31,7 @@ struct SimpleMatrixOperation : public MatrixBase< SimpleMatrixOperation<A1, A2, 
 
 	int operator()(const int i, const int j) const
 	{
-		return calc( arg1.self()(i, j), arg2.self()(i, j) );
+		return calc( arg1(i, j), arg2(i, j) );
 	}
 
 	int getN() const
