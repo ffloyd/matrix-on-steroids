@@ -9,12 +9,11 @@ void test_matrix_base_crtp(const MatrixBase<T, int>& matrix)
 	std::cout << matrix(0, 0) << std::endl;
 }
 
-//template<class T>
-//void test_base_object_crtp(const BaseObject<T>& m)
-//{
-//	DenseMatrix<int> x = m.self();
-//	std::cout << x(0, 0) << std::endl;
-//}
+template<class T>
+void test_base_object_crtp(const BaseObject<T>& m)
+{
+	std::cout << m.self()(0, 0) << std::endl;
+}
 
 int main() 
 {
@@ -22,7 +21,7 @@ int main()
 	
 	m.set(0, 0, 10);
 	test_matrix_base_crtp(m);
-	//test_base_object_crtp(m);
+	test_base_object_crtp(m);
 
 	return 0;
 }

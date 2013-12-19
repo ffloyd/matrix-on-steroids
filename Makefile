@@ -1,2 +1,4 @@
-test: test.cpp crtp/base_object.hpp crtp/evaluable_object.hpp crtp/matrix_base.hpp dense_matrix.hpp
+CRTP=crtp/base_object.hpp crtp/matrix_base.hpp
+
+test: test.cpp dense_matrix.hpp $(CRTP)
 	g++ $(CFLAGS) -o test test.cpp

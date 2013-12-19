@@ -3,21 +3,15 @@
 
 #include <cstring>
 
-#include "crtp/base_object.hpp"
 #include "crtp/matrix_base.hpp"
 
 template<class element>
-class DenseMatrix :
-	public BaseObject< DenseMatrix<element> >,
-	public MatrixBase< DenseMatrix<element>, element >
+class DenseMatrix : public MatrixBase< DenseMatrix<element>, element >
 {
 	element *data;
 	int N, M;
 
 public:
-	using BaseObject< DenseMatrix<element> >::self;
-	using MatrixBase< DenseMatrix<element>, element >::self;
-
 	DenseMatrix(const int N, const int M, const bool do_nulify = true) : N(N), M(M)
 	{
 		data = new element[N*M];
