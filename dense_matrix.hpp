@@ -21,6 +21,21 @@ public:
 		}
 	}
 
+	template<class A>
+	DenseMatrix(const MatrixBase<A, element>& matrix)
+	{
+		N = matrix.getN();
+		M = matrix.getM();
+		data = new element[N*M];
+		for (int i = 0; i < N; i++)
+		{
+			for (int j = 0; j < M; j++)
+			{
+				set(i, j, matrix(i, j));
+			}
+		}
+	}
+
 	~DenseMatrix()
 	{
 		delete[] data;
@@ -39,6 +54,16 @@ public:
 	void set(const int i, const int j, const element value)
 	{
 		data[i*N + j] = value;
+	}
+
+	int getN() const
+	{
+		return N;
+	}	
+
+	int getM() const
+	{
+		return M;
 	}
 };
 

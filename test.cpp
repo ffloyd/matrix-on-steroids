@@ -1,8 +1,6 @@
 #include <iostream>
 
 #include "dense_matrix.hpp"
-#include "crtp/matrix_base.hpp"
-//#include "crtp/matrix_operation.hpp"
 
 template<class T, class E>
 void test_matrix_base_crtp(const MatrixBase<T, E>& matrix)
@@ -18,11 +16,18 @@ void test_base_object_crtp(const BaseObject<T>& m)
 
 int main() 
 {
-	DenseMatrix<int> m(5, 5);
+	DenseMatrix<int> a(5, 5);
+	DenseMatrix<int> b(5, 5);
 	
-	m.set(0, 0, 10);
-	test_matrix_base_crtp(m);
-	test_base_object_crtp(m);
+	a.set(0, 0, 10);
+	b.set(0, 0,  5);
+
+	test_matrix_base_crtp(a);
+	test_base_object_crtp(a);
+
+	// test + operator itself
+	DenseMatrix<int> c = a + (b + a) -b;
+	std::cout << c(0, 0) << std::endl;
 
 	return 0;
 }

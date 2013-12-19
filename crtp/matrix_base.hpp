@@ -10,6 +10,18 @@ struct MatrixBase : public BaseObject<T>
 	{
 		return this->self()(i, j);
 	}
+
+	int getN() const
+	{
+		return this->self().getN();
+	}
+
+	int getM() const
+	{
+		return this->self().getM();
+	}
 };
+
+#include "matrix_operation.hpp"
 
 #endif   /* ----- #ifndef MATRIX_BASE_INC  ----- */
