@@ -4,9 +4,9 @@
 #include "crtp/matrix_base.hpp"
 
 template<class T>
-void test_matrix_base_crtp(const MatrixBase<T, int>& matrix)
+void test_matrix_base_crtp(const MatrixBase<T>& matrix)
 {
-	std::cout << matrix(0, 0) << std::endl;
+	std::cout << matrix.self()(0, 0) << std::endl;
 }
 
 template<class T>

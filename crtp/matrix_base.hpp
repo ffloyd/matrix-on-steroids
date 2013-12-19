@@ -3,13 +3,14 @@
 
 #include "base_object.hpp"
 
-template<class T, class element>
+template<class T>
 struct MatrixBase : public BaseObject<T>
 {
-	element operator()(const int i, const int j) const
-	{
-		return this->self()(i, j);
-	}
+	// DOESN'T WORK =(
+	//auto operator()(const int i, const int j) const -> decltype(this->self().operator()(i, j))
+	//{
+	//	return this->self()(i, j);
+	//}
 };
 
 #endif   /* ----- #ifndef MATRIX_BASE_INC  ----- */
