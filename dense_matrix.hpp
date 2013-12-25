@@ -3,10 +3,10 @@
 
 #include <cstring>
 
-#include "crtp/matrix_base.hpp"
+#include "crtp/matrix_object.hpp"
 
 template<class element>
-class DenseMatrix : public MatrixBase< DenseMatrix<element>, element >
+class DenseMatrix : public MatrixObject< DenseMatrix<element>, element >
 {
 	element *data;
 	int N, M;
@@ -22,7 +22,7 @@ public:
 	}
 
 	template<class A>
-	DenseMatrix(const MatrixBase<A, element>& matrix)
+	DenseMatrix(const MatrixObject<A, element>& matrix)
 	{
 		N = matrix.getN();
 		M = matrix.getM();

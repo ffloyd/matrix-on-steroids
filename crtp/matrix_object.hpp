@@ -4,7 +4,7 @@
 #include "base_object.hpp"
 
 template<class T, class element>
-struct MatrixBase : public BaseObject<T>
+struct MatrixObject : public BaseObject<T>
 {
 	element operator()(const int i, const int j) const
 	{

@@ -2,20 +2,20 @@
 #define  MATRIX_OPERATION_INC
 
 #include <functional>
-#include "matrix_base.hpp"
+#include "matrix_object.hpp"
 
 
 // for operations like plus and minus
 template<class A1, class A2, class binary_f, class element>
-struct SimpleMatrixOperation : public MatrixBase< SimpleMatrixOperation<A1, A2, binary_f, element>, element >
+struct SimpleMatrixOperation : public MatrixObject< SimpleMatrixOperation<A1, A2, binary_f, element>, element >
 {
-	const MatrixBase<A1, element>& arg1;
-	const MatrixBase<A2, element>& arg2;
+	const MatrixObject<A1, element>& arg1;
+	const MatrixObject<A2, element>& arg2;
 	const binary_f calc;
 	int N;
 	int M;
 
-	SimpleMatrixOperation(const MatrixBase<A1, element>& arg1, const MatrixBase<A2, element>& arg2) : 
+	SimpleMatrixOperation(const MatrixObject<A1, element>& arg1, const MatrixObject<A2, element>& arg2) : 
 		arg1(arg1),
 		arg2(arg2),
 		calc(binary_f())
@@ -46,13 +46,13 @@ struct SimpleMatrixOperation : public MatrixBase< SimpleMatrixOperation<A1, A2, 
 };
 
 template<class A1, class A2, class element>
-inline SimpleMatrixOperation< A1, A2, std::plus<element>, element > operator+(const MatrixBase<A1, element>& left_op, const MatrixBase<A2, element>& right_op)
+inline SimpleMatrixOperation< A1, A2, std::plus<element>, element > operator+(const MatrixObject<A1, element>& left_op, const MatrixObject<A2, element>& right_op)
 {
 	return SimpleMatrixOperation< A1, A2, std::plus<element>, element >(left_op, right_op);
 }
 
 template<class A1, class A2, class element>
-inline SimpleMatrixOperation< A1, A2, std::minus<element>, element > operator-(const MatrixBase<A1, element>& left_op, const MatrixBase<A2, element>& right_op)
+inline SimpleMatrixOperation< A1, A2, std::minus<element>, element > operator-(const MatrixObject<A1, element>& left_op, const MatrixObject<A2, element>& right_op)
 {
 	return SimpleMatrixOperation< A1, A2, std::minus<element>, element >(left_op, right_op);
 }

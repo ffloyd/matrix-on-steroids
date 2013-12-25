@@ -3,7 +3,7 @@
 #include "dense_matrix.hpp"
 
 template<class T, class E>
-void test_matrix_base_crtp(const MatrixBase<T, E>& matrix)
+void test_matrix_base_crtp(const MatrixObject<T, E>& matrix)
 {
 	std::cout << matrix(0, 0) << std::endl;
 }
