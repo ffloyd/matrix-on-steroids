@@ -4,8 +4,15 @@
 #include "base_object.hpp"
 
 template<class T, class element>
-struct MatrixObject : public BaseObject<T>
+class MatrixObject : public BaseObject<T>
 {
+	int N, M;
+public:
+	MatrixObject(const int N, const int M) :
+		N(N), M(M)
+	{
+	}
+
 	element operator()(const int i, const int j) const
 	{
 		return this->self()(i, j);
@@ -13,12 +20,12 @@ struct MatrixObject : public BaseObject<T>
 
 	int getN() const
 	{
-		return this->self().getN();
+		return N;
 	}
 
 	int getM() const
 	{
-		return this->self().getM();
+		return M;
 	}
 };
 

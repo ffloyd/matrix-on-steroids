@@ -9,13 +9,14 @@
 template<class A1, class A2, class binary_f, class element>
 struct SimpleMatrixOperation : public MatrixObject< SimpleMatrixOperation<A1, A2, binary_f, element>, element >
 {
+	typedef MatrixObject< SimpleMatrixOperation, element > BaseType;
+
 	const MatrixObject<A1, element>& arg1;
 	const MatrixObject<A2, element>& arg2;
 	const binary_f calc;
-	int N;
-	int M;
 
-	SimpleMatrixOperation(const MatrixObject<A1, element>& arg1, const MatrixObject<A2, element>& arg2) : 
+	SimpleMatrixOperation(const MatrixObject<A1, element>& arg1, const MatrixObject<A2, element>& arg2) :
+		BaseType(arg1.getN(), arg1.getM()),
 		arg1(arg1),
 		arg2(arg2),
 		calc(binary_f())
@@ -24,9 +25,6 @@ struct SimpleMatrixOperation : public MatrixObject< SimpleMatrixOperation<A1, A2
 		{
 			throw std::logic_error("Incompatible matrices size");
 		}
-
-		N = arg1.getN();
-		M = arg1.getM();
 	}
 
 	int operator()(const int i, const int j) const
@@ -34,15 +32,6 @@ struct SimpleMatrixOperation : public MatrixObject< SimpleMatrixOperation<A1, A2
 		return calc( arg1(i, j), arg2(i, j) );
 	}
 
-	int getN() const
-	{
-		return N;
-	}
-
-	int getM() const
-	{
-		return M;
-	}
 };
 
 template<class A1, class A2, class element>

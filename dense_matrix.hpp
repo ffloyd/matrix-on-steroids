@@ -9,12 +9,14 @@ template<class element>
 class DenseMatrix : public MatrixObject< DenseMatrix<element>, element >
 {
 	element *data;
-	int N, M;
 
 public:
-	DenseMatrix(const int N, const int M, const bool do_nulify = true) : N(N), M(M)
+	typedef MatrixObject< DenseMatrix, element > BaseType;
+
+	DenseMatrix(const int N, const int M, const bool do_nulify = true) :
+		BaseType(N, M)
 	{
-		data = new element[N*M];
+		data = new element[this->getN() * this->getM()];
 		if (do_nulify)
 		{
 			nulify();
@@ -22,14 +24,13 @@ public:
 	}
 
 	template<class A>
-	DenseMatrix(const MatrixObject<A, element>& matrix)
+	DenseMatrix(const MatrixObject<A, element>& matrix) :
+		BaseType(matrix.getN(), matrix.getM())
 	{
-		N = matrix.getN();
-		M = matrix.getM();
-		data = new element[N*M];
-		for (int i = 0; i < N; i++)
+		data = new element[this->getN() * this->getM()];
+		for (int i = 0; i < this->getN(); i++)
 		{
-			for (int j = 0; j < M; j++)
+			for (int j = 0; j < this->getM(); j++)
 			{
 				set(i, j, matrix(i, j));
 			}
@@ -43,28 +44,19 @@ public:
 
 	void nulify()
 	{
-		std::memset(data, 0, sizeof(element)*M*N);
+		std::memset(data, 0, sizeof(element) * this->getM() * this->getN());
 	}
 
 	element operator()(const int i, const int j) const
 	{
-		return data[N*i + j];	
+		return data[i * this->getM() + j];	
 	}
 
 	void set(const int i, const int j, const element value)
 	{
-		data[i*N + j] = value;
+		data[i * this->getM() + j] = value;
 	}
 
-	int getN() const
-	{
-		return N;
-	}	
-
-	int getM() const
-	{
-		return M;
-	}
 };
 
 #endif   /* ----- #ifndef DENSE_MATRIX_INC  ----- */
